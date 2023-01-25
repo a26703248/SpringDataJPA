@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xmlns:c="http://www.springframework.org/schema/c"
+  xmlns:cache="http://www.springframework.org/schema/cache"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+  xmlns:jee="http://www.springframework.org/schema/jee"
+  xmlns:lang="http://www.springframework.org/schema/lang"
+  xmlns:mvc="http://www.springframework.org/schema/mvc"
+  xmlns:p="http://www.springframework.org/schema/p"
+  xmlns:task="http://www.springframework.org/schema/task"
+  xmlns:tx="http://www.springframework.org/schema/tx"
+  xmlns:util="http://www.springframework.org/schema/util"
+  xmlns:websocket="http://www.springframework.org/schema/websocket"
+  xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+  xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
+                      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+                      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+                      http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.11.xsd
+                      http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd
+                      http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
+                      http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+                      http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.3.xsd
+                      http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
+                      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                      http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-4.3.xsd
+                      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+                      http://www.springframework.org/schema/data/jpa https://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+                      ">
+
+
+  <!-- component-scan -->
+  <context:component-scan base-package="study.spring.data" />
+
+  <!-- javaconfig: @EnableJpaRepositories -->
+  <jpa:repositories base-package="study.spring.data"
+    entity-manager-factory-ref="entityManagerFactory"
+    transaction-manager-ref="transactionManager"
+  />
+
+  <!-- Spring Bean Example -->
+  <bean name="entityManagerFactory"
+    class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+    <!-- jpa 實作 -->
+    <property name="jpaVendorAdapter">
+      <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        <!-- 自動生成資料表 -->
+        <property name="generateDdl" value="true" />
+        <property name="showSql" value="true" />
+      </bean>
+    </property>
+    <property name="packagesToScan" value="study.spring.data.pojo" />
+    <property name="dataSource" ref="dataSource" />
+  </bean>
+
+  <!-- 設定資料庫連線池(connection pool) c3p0 -->
+  <bean id="dataSource"
+    class="com.mchange.v2.c3p0.ComboPooledDataSource">
+    <!-- basic(必須) -->
+    <property name="driverClass" value="com.mysql.cj.jdbc.Driver" />
+    <property name="jdbcUrl"
+      value="jdbc:mysql://192.168.0.200:3306/spring_data?serverTimezone=Asia/Taipei&amp;characterEncoding=utf-8&amp;useUnicode=true" />
+    <property name="user" value="developer" />
+    <property name="password" value="a0909007892" />
+
+    <!-- options(可選) -->
+    <!-- 最小連接數(不管是否有連線) -->
+    <property name="minPoolSize" value="10" />
+    <!-- 最大連接數default=100 -->
+    <property name="maxPoolSize" value="100" />
+    <!-- 初始生成連接數 -->
+    <property name="initialPoolSize" value="10" />
+    <!-- 最大閒置時間(單位秒) -->
+    <property name="maxIdleTime" value="100" />
+    <!-- 最大快取SQL 語法 cache sql statement,0 表示 no cahce -->
+    <property name="maxStatements" value="100" />
+  </bean>
+
+  <!-- 配置事務(transaction)管理器 -->
+  <bean id="transactionManager"
+    class="org.springframework.orm.jpa.JpaTransactionManager">
+    <!-- 配置 entityManagerFactory -->
+    <property name="entityManagerFactory" ref="entityManagerFactory" />
+  </bean>
+
+  <!-- 啟用事務註解@驅動, 會針對事務相關的註解@進行掃描與解析 -->
+  <tx:annotation-driven transaction-manager="transactionManager" />
+
+</beans>
