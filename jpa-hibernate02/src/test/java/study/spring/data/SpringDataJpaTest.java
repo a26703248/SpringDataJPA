@@ -1,5 +1,7 @@
 package study.spring.data;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,8 @@ public class SpringDataJpaTest {
     emp.setName("Linda");
     Emp persist = empRepository.save(emp);
     System.out.println(persist);
+    Iterable<Emp> findAllById = empRepository.findAllById(Arrays.asList(1L, 3L, 4L, 5L));
+    findAllById.forEach(System.out::println);
   }
 
   @Test
