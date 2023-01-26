@@ -1,25 +1,15 @@
 package study.spring.data;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.apache.commons.lang3.StringUtils;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.querydsl.core.Tuple;
-import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.jpa.impl.JPAQuery;
-import com.querydsl.jpa.impl.JPAQueryFactory;
-
-import config.SpringDataJpaConfig;
-import study.spring.data.pojo.Emp;
-import study.spring.data.pojo.QEmp;
+import study.spring.data.config.SpringDataJpaConfig;
+// import study.spring.data.pojo.QEmp;
 import study.spring.data.repository.QueryDSLRepository;
 
 @ContextConfiguration(classes = SpringDataJpaConfig.class)
@@ -52,34 +42,34 @@ public class QueryDSLTest {
   //   findAll.forEach(System.out::println);
   // }
 
-  @Test
-  public void test03() {
-    Emp emp = new Emp();
-    emp.setId(5L);
-    emp.setName("keven,jason,Hellen");
+  // @Test
+  // public void test03() {
+  //   Emp emp = new Emp();
+  //   emp.setId(5L);
+  //   emp.setName("keven,jason,Hellen");
 
-    QEmp qEmp = QEmp.emp;
-    BooleanExpression expression = qEmp.isNotNull();
+  //   QEmp qEmp = QEmp.emp;
+  //   BooleanExpression expression = qEmp.isNotNull();
 
-    expression = emp.getId() > 0 || emp.getId() != null?expression.or(qEmp.id.gt(emp.getId())):expression;
-    expression = StringUtils.isNotEmpty(emp.getName())?expression.or(qEmp.name.in(emp.getName().split(","))):expression;
-    Iterable<Emp> findAll = queryDSLRepository.findAll(expression);
-    findAll.forEach(System.out::println);
-  }
+  //   expression = emp.getId() > 0 || emp.getId() != null?expression.or(qEmp.id.gt(emp.getId())):expression;
+  //   expression = StringUtils.isNotEmpty(emp.getName())?expression.or(qEmp.name.in(emp.getName().split(","))):expression;
+  //   Iterable<Emp> findAll = queryDSLRepository.findAll(expression);
+  //   findAll.forEach(System.out::println);
+  // }
 
-  @Test
-  public void test04() {
-    JPAQueryFactory factory = new JPAQueryFactory(em);
-    QEmp emp = QEmp.emp;
+  // @Test
+  // public void test04() {
+  //   JPAQueryFactory factory = new JPAQueryFactory(em);
+  //   QEmp emp = QEmp.emp;
 
-    JPAQuery<Tuple> tuple = factory.select(emp.id, emp.name)
-      .from(emp)
-      .where(emp.id.eq(1L))
-      .orderBy(emp.id.desc());
+  //   JPAQuery<Tuple> tuple = factory.select(emp.id, emp.name)
+  //     .from(emp)
+  //     .where(emp.id.eq(1L))
+  //     .orderBy(emp.id.desc());
 
-    System.out.println(tuple);
-    List<Tuple> fetch = tuple.fetch();
-    fetch.forEach(System.out::println);
-  }
+  //   System.out.println(tuple);
+  //   List<Tuple> fetch = tuple.fetch();
+  //   fetch.forEach(System.out::println);
+  // }
 
 }

@@ -178,5 +178,6 @@
   <modules>
     <module>jpa-hibernate01</module>
     <module>jpa-hibernate02</module>
+    <module>jpa-hibernate03</module>
   </modules>
 </project>

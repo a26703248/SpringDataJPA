@@ -1,4 +1,4 @@
-package config;
+package study.spring.data.config;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;

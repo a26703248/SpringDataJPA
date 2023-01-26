@@ -27,7 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import config.SpringDataJpaConfig;
+import study.spring.data.config.SpringDataJpaConfig;
 import study.spring.data.pojo.Emp;
 import study.spring.data.repository.EmpSpecificationRepository;
 
