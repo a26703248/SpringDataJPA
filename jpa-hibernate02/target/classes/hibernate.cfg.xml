@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+  <session-factory>
+
+    <!-- 顯示實際操作資料庫時的SQL -->
+    <property name="show_sql">true</property>
+    <!-- 將顯示的SQL排版，方便觀看 -->
+    <property name="format_sql">true</property>
+    <!-- SQL方言，這邊設定的是MySQL -->
+    <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
+    <!-- JDBC驅動程式 -->
+    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+    <!-- JDBC URL -->
+    <property name="connection.url">jdbc:mysql://192.168.0.200:3306/spring_data</property>
+    <!-- 資料庫使用者 -->
+    <property name="connection.username">developer</property>
+    <!-- 資料庫密碼 -->
+    <property name="connection.password">a0909007892</property>
+
+    <!-- 可自動執行那些 ddl 操作(validate | update | create | create-drop | none) -->
+    <!-- none(預設) 無法自動做任何 ddl 操作 -->
+    <!-- create, create-drop需要謹慎使用,因為期會刪除或創建資料表。 -->
+    <!-- validate 一般用於上線環境,驗證物件與資料庫的欄位屬性是否對應 -->
+    <!-- update 一般用於開發,定義好物件後,Hibernate會自動創建更新資料表,節省手動更新操作 -->
+    <property name="hibernate.hbm2ddl.auto">update</property>
+
+    <!-- 以下設置物件與資料庫表格映射文件 -->
+    <mapping class="study.spring.data.pojo.Emp"/>
+
+  </session-factory>
+
+</hibernate-configuration>
