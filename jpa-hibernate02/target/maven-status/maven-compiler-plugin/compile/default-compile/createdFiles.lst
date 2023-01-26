@@ -2,6 +2,7 @@ study/spring/data/repository/EmpSpecificationRepository.class
 study/spring/data/repository/EmpRepository.class
 study/spring/data/repository/EmpMethodNameRepository.class
 config/SpringDataJpaConfig.class
+study/spring/data/pojo/QEmp.class
 study/spring/data/repository/EmpQBExampleRepository.class
 study/spring/data/pojo/Emp.class
 study/spring/data/repository/QueryDSLRepository.class

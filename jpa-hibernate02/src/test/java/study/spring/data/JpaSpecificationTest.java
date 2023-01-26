@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.persistence.criteria.CriteriaQuery;
@@ -37,7 +38,7 @@ public class JpaSpecificationTest {
   @Autowired
   private EmpSpecificationRepository empSpecificationRepository;
 
-  @Autowired
+  @PersistenceContext
   private EntityManager entityManager;
 
   // Spring Data JPA
