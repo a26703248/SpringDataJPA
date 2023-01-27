@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Launch ApplicationContext",
+      "request": "launch",
+      "mainClass": "ApplicationContext",
+      "projectName": "jpa-hibernate04"
+    },
+    {
+      "type": "java",
       "name": "Launch Current File",
       "request": "launch",
       "mainClass": "${file}"

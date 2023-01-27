@@ -1,10 +1,16 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>springdataparent</artifactId>
+    <groupId>study.spring.data</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
   <groupId>study.spring.data</groupId>
-  <artifactId>springdataparent</artifactId>
+  <artifactId>jpa-hibernate04</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
@@ -21,23 +27,80 @@
     <jacoco.unit-tests.limit.branch-ratio>0%</jacoco.unit-tests.limit.branch-ratio>
     <jacoco.unit-tests.limit.class-complexity>20</jacoco.unit-tests.limit.class-complexity>
     <jacoco.unit-tests.limit.method-complexity>5</jacoco.unit-tests.limit.method-complexity>
-    <hibernate-version>5.4.24.Final</hibernate-version>
-    <querydsl.version>4.4.0</querydsl.version>
-    <querydsl.apt.version>1.1.3</querydsl.apt.version>
   </properties>
+  <dependencies>
 
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.springframework.data</groupId>
-        <artifactId>spring-data-bom</artifactId>
-        <version>2021.2.7</version>
-        <scope>import</scope>
-        <type>pom</type>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.24</version>
+    </dependency>
 
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- mysql -->
+    <dependency>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
+      <scope>runtime</scope>
+      <version>8.0.32</version>
+    </dependency>
+
+    <!-- hibernate jpa -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>${hibernate-version}</version>
+    </dependency>
+
+    <!-- spring data jpa -->
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-jpa</artifactId>
+    </dependency>
+
+    <!-- spring test -->
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>5.2.7.RELEASE</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- connection pool -->
+    <dependency>
+      <groupId>com.mchange</groupId>
+      <artifactId>c3p0</artifactId>
+      <version>0.9.5.5</version>
+    </dependency>
+
+    <!-- common lang3 -->
+    <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.12.0</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-aspects -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aspects</artifactId>
+      <version>5.2.7.RELEASE</version>
+    </dependency>
+
+  </dependencies>
   <build>
     <plugins>
       <plugin>
@@ -62,36 +125,35 @@
       </plugin>
       <!-- <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-checkstyle-plugin</artifactId>
-      <version>${maven-checkstyle-plugin.version}</version>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>${maven-checkstyle-plugin.version}</version>
         <dependencies>
           <dependency>
-      <groupId>com.puppycrawl.tools</groupId>
+            <groupId>com.puppycrawl.tools</groupId>
             <artifactId>checkstyle</artifactId>
-      <version>${checkstyle.version}</version>
+            <version>${checkstyle.version}</version>
           </dependency>
           <dependency>
-      <groupId>com.github.ngeor</groupId>
+            <groupId>com.github.ngeor</groupId>
             <artifactId>checkstyle-rules</artifactId>
-      <version>4.9.3</version>
+            <version>4.9.3</version>
           </dependency>
         </dependencies>
         <configuration>
-      <configLocation>com/github/ngeor/checkstyle.xml</configLocation>
-      <includeTestSourceDirectory>true</includeTestSourceDirectory>
+          <configLocation>com/github/ngeor/checkstyle.xml</configLocation>
+          <includeTestSourceDirectory>true</includeTestSourceDirectory>
           <skip>${skipTests}</skip>
-      </configuration>
+        </configuration>
         <executions>
           <execution>
             <id>checkstyle</id>
-      <phase>validate</phase>
+            <phase>validate</phase>
             <goals>
               <goal>check</goal>
             </goals>
-      </execution>
+          </execution>
         </executions>
       </plugin> -->
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -175,10 +237,4 @@
       </plugin>
     </plugins>
   </reporting>
-  <modules>
-    <module>jpa-hibernate01</module>
-    <module>jpa-hibernate02</module>
-    <module>jpa-hibernate03</module>
-    <module>jpa-hibernate04</module>
-  </modules>
 </project>
