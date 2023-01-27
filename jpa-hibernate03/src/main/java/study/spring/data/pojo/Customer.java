@@ -1,10 +1,12 @@
 package study.spring.data.pojo;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,12 +17,22 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Version;
+
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.Data;
 
 @Entity
 @Table(name = "tb_customer")
 @Data
+@EntityListeners(AuditingEntityListener.class)
 public class Customer {
 
   @Id
@@ -79,5 +91,21 @@ public class Customer {
   )
   private List<Role> roles;
 
+
+  private @Version Long version;
+
+  @CreatedBy
+  private String createdBy;
+
+  @LastModifiedBy
+  private String modifiedBy;
+
+  @Temporal(TemporalType.TIMESTAMP)
+  @CreatedDate
+  private Date createdDate = new Date();
+
+  @Temporal(TemporalType.TIMESTAMP)
+  @LastModifiedDate
+  private Date modifiedDate = new Date();
 
 }

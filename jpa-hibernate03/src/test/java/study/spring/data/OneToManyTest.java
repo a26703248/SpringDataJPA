@@ -37,6 +37,14 @@ public class OneToManyTest {
   }
 
   @Test
+  public void updateTest() {
+    Customer customer = new Customer();
+    customer.setCusId(1L);
+    customer.setCusName("Allan");
+    repository.save(customer);
+  }
+
+  @Test
   @Transactional(readOnly = true)
   public void selectTest() {
     Optional<Customer> findById = repository.findById(1L);
