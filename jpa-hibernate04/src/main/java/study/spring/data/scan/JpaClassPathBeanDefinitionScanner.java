@@ -14,7 +14,7 @@ import study.spring.data.bean.JpaFactoryBean;
 /*
  * 自訂掃描器
  */
-public class JpaClassPathBeanDefinitionScanner extends ClassPathBeanDefinitionScanner{
+public class JpaClassPathBeanDefinitionScanner extends ClassPathBeanDefinitionScanner {
 
   public JpaClassPathBeanDefinitionScanner(BeanDefinitionRegistry registry) {
     super(registry);
@@ -30,19 +30,17 @@ public class JpaClassPathBeanDefinitionScanner extends ClassPathBeanDefinitionSc
   @Override
   protected Set<BeanDefinitionHolder> doScan(String... basePackages) {
     Set<BeanDefinitionHolder> beanDefinitionHolders = super.doScan(basePackages);
-    for (BeanDefinitionHolder beanDefinitionHolder : beanDefinitionHolders) {
-      ScannedGenericBeanDefinition beanDefinition = (ScannedGenericBeanDefinition)beanDefinitionHolder.getBeanDefinition();
-      // 查詢 scan 內傳入的 bean class
-      String beanClass = beanDefinition.getBeanClassName();
-      // 傳入 bean class 建構子
-      beanDefinition.getConstructorArgumentValues().addGenericArgumentValue(beanClass);
-
-      // 替換掉 bean 中實體類別
-      beanDefinition.setBeanClass(JpaFactoryBean.class);
-
-    }
+    beanDefinitionHolders.stream()
+        .map(b -> (ScannedGenericBeanDefinition) b.getBeanDefinition())
+        .forEach(beanDef -> {
+          // 查詢 scan 內傳入的 bean class
+          String beanClass = beanDef.getBeanClassName();
+          // 傳入 bean class 建構子
+          beanDef.getConstructorArgumentValues().addGenericArgumentValue(beanClass);
+          // 替換掉 bean 中實體類別
+          beanDef.setBeanClass(JpaFactoryBean.class);
+        });
     return beanDefinitionHolders;
   }
-
 
 }
