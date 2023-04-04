@@ -1,4 +1,4 @@
-# springdataparent
+# Spring Data JPA
 ## GeneratedValue(strategy = GenerationType.xxx)
 1. GenerationType.TABLE: 使用一個資料表紀錄所有主鍵
 2. GenerationType.SEQUENCE: 依照資料表 sequence 生成
