@@ -25,7 +25,7 @@
     <td>FetchType.EARGE</td>
   </tr>
   <tr>
-    <td>@OneToOnec</td>
+    <td>@OneToOne</td>
     <td>FetchType.EARGE</td>
   </tr>
   <tr>
