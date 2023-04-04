@@ -16,28 +16,28 @@
 1. FetchType.EARGE: 搜尋時一併搜尋關聯資料
 2. 	FetchType.LAZY
 <table>
-  <th>
-    <tr>關聯註解</tr>
-    <tr>預設FetchType</tr>
-  </th>
-  <th>
+  <tr>
+    <th>關聯註解</tr>
+    <th>預設FetchType</tr>
+  </tr>
+  <tr>
     <td>@Basic</td>
     <td>FetchType.EARGE</td>
-  </th>
-  <th>
+  </tr>
+  <tr>
     <td>@OneToOnec</td>
     <td>FetchType.EARGE</td>
-  </th>
-  <th>
+  </tr>
+  <tr>
     <td>@ManyToOne</td>
     <td>FetchType.EARGE</td>
-  </th>
-  <th>
+  </tr>
+  <tr>
     <td>@OneToMany</td>
     <td>FetchType.LAZY</td>
-  </th>
-  <th>
+  </tr>
+  <tr>
     <td>@ManyToMany</td>
     <td>FetchType.LAZY</td>
-  </th>
+  </tr>
 </table>
