@@ -14,7 +14,7 @@
 
 ## FetchType
 1. FetchType.EARGE: 搜尋時一併搜尋關聯資料
-2. 	FetchType.LAZY
+2. 	FetchType.LAZY: 指搜尋當前物件資料
 <table>
   <tr>
     <th>關聯註解</th>
