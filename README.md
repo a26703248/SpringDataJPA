@@ -58,9 +58,13 @@
   </tr>
 </table>
 
-| :-關聯註解-: | :-預設FetchTyp-:|
+| 關聯註解 | 預設FetchTyp|
 |-----------|---------------|
-| :-@Basic-: | :-FetchType.EARGE-: |
+| @Basic|FetchType.EARGE|
+|@OneToOne|FetchType.EARGE|
+|@ManyToOne|FetchType.EARGE|
+|@OneToMany|FetchType.LAZY|
+|@ManyToMany|FetchType.LAZY|
 
 ## OneToOne and OneToMany
 1. orphanRemoval(孤兒移除,預設false) : 當關聯物件變更為 null 時,將一併刪除
