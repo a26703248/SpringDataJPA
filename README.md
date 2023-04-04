@@ -17,8 +17,8 @@
 2. 	FetchType.LAZY
 <table>
   <tr>
-    <th>關聯註解</tr>
-    <th>預設FetchType</tr>
+    <th>關聯註解</th>
+    <th>預設FetchType</th>
   </tr>
   <tr>
     <td>@Basic</td>
