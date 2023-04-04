@@ -31,32 +31,6 @@
 ## FetchType
 1. FetchType.EARGE: 搜尋時一併搜尋關聯資料
 2. 	FetchType.LAZY: 指搜尋當前物件資料
-<table>
-  <tr>
-    <th>關聯註解</th>
-    <th>預設FetchType</th>
-  </tr>
-  <tr>
-    <td>@Basic</td>
-    <td>FetchType.EARGE</td>
-  </tr>
-  <tr>
-    <td>@OneToOne</td>
-    <td>FetchType.EARGE</td>
-  </tr>
-  <tr>
-    <td>@ManyToOne</td>
-    <td>FetchType.EARGE</td>
-  </tr>
-  <tr>
-    <td>@OneToMany</td>
-    <td>FetchType.LAZY</td>
-  </tr>
-  <tr>
-    <td>@ManyToMany</td>
-    <td>FetchType.LAZY</td>
-  </tr>
-</table>
 
 | 關聯註解 | 預設FetchTyp|
 |-----------|---------------|
