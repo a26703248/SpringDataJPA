@@ -21,7 +21,7 @@
 3. GenerationType.IDENTITY: 依照資料表自動生成不做介入
 4. GenerationType.AUTO: 透過程式自動生成(雪花演算法)
 ![generation_type](./image/generation_type_support.png)
-5.
+
 ## CascadeType
 1. CascadeType.PERSIST: 在儲存時一併儲存 被參考的物件
 2. CascadeType.MERGE: 在合併修改時一併 合併修改被參考的物件
